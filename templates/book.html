@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href=" ">
+
+    <title>Book Manage</title>
+    {% block css %}
+    {% endblock %}
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="/static/bs/css/bootstrap.css">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/css/dashboard.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/book/">Books Manage</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <form class="navbar-form navbar-right" action="/searchbook/" method="post">
+                {% csrf_token %}
+                <div class="input-group">
+                    <input class="form-control" type="text" name="value">
+                    <div class="input-group-btn">
+                        <select class="form-control" name="type" id="">
+                            <option value="book">书名</option>
+                            <option value="publish">出版社</option>
+                            <option value="author">作者</option>
+                        </select>
+                        <button class="form-control">搜索</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div><!-- search block-->
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li {% block active_book %}class="active" {% endblock %}><a href="/book/">书籍概览 <span class="sr-only">(current)</span></a></li>
+                <li {% block active_addbook %} {% endblock %}><a href="/addbook/">添加书籍</a></li>
+                <li {% block active_editbook %} {% endblock %}><a href="#">编辑书籍</a></li>
+                <li {% block active_details %} {% endblock %}><a href="#">书籍详情</a></li>
+                <li {% block active_searchbook %} {% endblock %}><a href="/searchbook/">搜索结果</a></li>
+            </ul>
+
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h2 class="sub-header">{% block title %}书籍概览{% endblock %}</h2>
+            {% block table %}
+            <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th>类别</th>
+                            <th>书名</th>
+                            <th>出版社</th>
+                            <th>作者</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for book in books %}
+                            <tr>
+                                <td>{{ book.category.name }}</td>
+                                <td>《{{ book.name }}》</td>
+                                <td>{{ book.publish.name }}出版社</td>
+                                <td>
+                                    {% for author in book.author.all %}
+                                        {{ author.name }}
+                                    {% endfor %}
+                                </td>
+                                <td>
+                                    <a class="btn btn-danger" href="/del/{{ book.id }}/">删除</a>
+                                    <a class="btn btn-info" href="/edit/{{ book.id }}/">编辑</a>
+                                    <a class="btn btn-info" href="/details/{{ book.id }}/">详情</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+            </div>
+            {% endblock %}
+        </div>
+    </div>
+</div>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="/static/bs/js/bootstrap.js"></script>
+</body>
+</html>

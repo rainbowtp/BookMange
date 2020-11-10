@@ -1,0 +1,75 @@
+{% extends "book.html" %}
+{% block active_book %}{% endblock %}
+{% block active_details %}class="active"{% endblock %}
+{% block title %}书籍详情{% endblock %}
+{% block css %}
+
+{% endblock %}
+{% block table %}
+    <div class="container">
+        <div class="row">
+            <div class="col bg-white">
+                <h2 class="text-center">《{{ book.name }}》 <small class="text-right">{{ book.category.name }}</small>
+                </h2>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class=" col-md-offset-1 col-md-3" style="margin-top: 50px">
+                <table class="table">
+                    <tbody>
+                    <tr><img src="/static/img/1.png" alt=""></tr>
+                    <tr><h2>{{ book.publish.name }}出版社</h2></tr>
+                    <tr>
+                        <td><h4>所在城市</h4></td>
+                        <td><h4>{{ book.publish.city }}</h4></td>
+                    </tr>
+                    <tr>
+                        <td><h4>联系电话</h4></td>
+                        <td><h4>{{ book.publish.tel }}</h4></td>
+                    </tr>
+                    <tr>
+                        <td><h4>电子邮箱</h4></td>
+                        <td><h4>{{ book.publish.email }}</h4></td>
+                    </tr>
+                    <tr>
+                        <td><h4>简介</h4></td>
+                        <td><h4>{{ book.publish.description }}</h4></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            {% for author in authors %}
+                <div class=" col-md-offset-1 col-md-3" style="margin-top: 70px">
+                    <table class="table">
+                        <tbody>
+                        <tr><img src="/static/img/2.png" alt=""></tr>
+                        <tr>
+                            <td><h2>{{ author.name }}</h2></td>
+                        </tr>
+                        <tr>
+                            <td><h4>简介</h4></td>
+                            <td><h4>{{ author.description }}</h4></td>
+                        </tr>
+                        <tr>
+                            <td><h4>年龄</h4></td>
+                            <td><h4>{{ author.age }}</h4></td>
+                        </tr>
+                        <tr>
+                            <td><h4>国籍</h4></td>
+                            <td><h4>{{ author.country }}</h4></td>
+                        </tr>
+                        <tr>
+                            <td><h4>邮编</h4></td>
+                            <td><h4>{{ author.postcode }}</h4></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            {% endfor %}
+
+
+        </div>
+
+    </div>
+{% endblock %}

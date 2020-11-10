@@ -1,0 +1,27 @@
+{% extends "book.html" %}
+{% block active_book %}{% endblock %}
+{% block active_addbook %}class="active"{% endblock %}
+{% block title %}添加书籍{% endblock %}
+{% block table %}
+    <form class="form-inline" action="" method="post">
+        {% csrf_token %}
+        <lable>类别</lable>
+        <select class="btn btn-default" name="category" id="">
+            <option value="编程语言">编程语言</option>
+            <option value="操作系统">操作系统</option>
+            <option value="渗透方法论">渗透方法论</option>
+            <option value="算法">算法</option>
+            <option value="AI">AI</option>
+            <option value="Web安全">Web安全</option>
+            <option value="其他技术">其他技术</option>
+        </select>
+        书名
+        <input class="btn btn-default" type="text" required="required" name="book">
+        出版社
+        <input class="btn btn-default" type="text" name="publish">
+        作者 (多名作者用空格隔开)
+        <input class="btn btn-default" type="text" required="required" name="authors">
+        <input class="btn btn-default" type="submit" value="增加书籍">
+    </form>
+    </body>
+{% endblock %}

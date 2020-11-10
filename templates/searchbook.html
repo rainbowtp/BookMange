@@ -1,0 +1,32 @@
+{% extends 'book.html' %}
+
+{% block active_book %}{% endblock %}
+{% block active_searchbook %}class="active"{% endblock %}
+{% block title %}搜索结果{% endblock %}
+{% block table %}
+<table class="table table-hover table-striped">
+    <tr>
+        <th style="width: 100px" align="left">书籍</th>
+        <th style="width: 150px" align="left">出版社</th>
+        <th style="width: 100px" align="left">作者</th>
+        <th style="width: 100px" align="left">操作</th>
+    </tr>
+    {% for book in books %}
+        <tr>
+            <td>《{{ book.name }}》</td>
+            <td>{{ book.publish.name }}出版社</td>
+            <td>
+                {% for author in book.author.all %}
+                    {{ author.name }}
+                {% endfor %}
+            </td>
+            <td>
+                <a class="btn btn-danger" href="/del/{{ book.id }}/">删除</a>
+                <a class="btn btn-info" href="/edit/{{ book.id }}/">编辑</a>
+                <a class="btn btn-info" href="/details/{{ book.id }}/">详情</a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+<a href="/book/"></a>
+{% endblock %}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .container {
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <div class="row-cols-lg-1">
+        <div class="card bg-light">
+            <div class="card-body">
+                <div class="text-center">
+                    <h2 class="card-title">《{{ book.name }}》</h2>
+                </div>
+                {#                <p class="card-text"> {{ book.category.name }}</p>#}
+            </div>
+        </div>
+    </div>
+        <div class="row">
+        <div class="col-md-3 ">
+            <div class="card bg-light">
+                <img class="card-img-top" src="/static/img/1.png" alt="">
+                <div class="card-body">
+                    <h5 class="card-title">{{ book.publish.name }}出版社</h5>
+                    <p class="card-text"> 所在城市：{{ book.publish.city }}</p>
+                    <p class="card-text"> 联系电话：{{ book.publish.tel }}</p>
+                    <p class="card-text"> 电子邮箱：{{ book.publish.email }}</p>
+                    <p class="card-text"> 简介：{{ book.publish.description }}</p>
+                </div>
+            </div>
+        </div>
+        {% for author in authors %}
+            <div class="col-md-3">
+                <div class="card bg-white">
+                    <img class="card-img-top" src="/static/img/2.png" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ author.name }}</h5>
+                        <p class="card-text"> 个人简介：{{ author.description }}</p>
+                        <p class="card-text"> 年龄：{{ author.age }}</p>
+                        <p class="card-text"> 国籍：{{ author.country }}</p>
+                        <p class="card-text"> 邮编：{{ author.postcode }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>
